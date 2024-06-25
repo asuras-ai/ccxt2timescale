@@ -7,11 +7,19 @@ import json
 import os
 
 # Configuration
-database_url = os.getenv('DATABASE_URL')
+# Configuration
+DATABASE = {
+    'host': os.getenv('DATABASE_HOST'),
+    'dbname': os.getenv('DATABASE_NAME'),
+    'user': os.getenv('DATABASE_USER'),
+    'password': os.getenv('DATABASE_PASSWORD')
+}
 CONFIG_FILE = 'config.json'
 
-conn = psycopg2.connect(database_url)
-   
+def connect_db():
+    conn = psycopg2.connect(**DATABASE)
+    return conn
+
 
 def create_table(conn, exchange, symbol, timeframe):
     #table_name = f'ohlcv_{symbol.replace("/", "_").lower()}_{timeframe}'
@@ -75,7 +83,8 @@ def insert_ohlcv_data(conn, data, exchange, symbol, timeframe):
 def main():
     with open(CONFIG_FILE) as f:
         config = json.load(f)
-
+        
+    conn = connect_db()
     for conf in config:
         exchange = getattr(ccxt, conf['exchange'])()
         symbol = conf['symbol']
