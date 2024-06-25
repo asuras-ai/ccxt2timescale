@@ -7,7 +7,7 @@ FROM python:3.11-slim
 #    && rm -rf /var/lib/apt/lists/*
 
 # Install nano editor
-RUN apt update -y && apt install nano
+#RUN apt update -y && apt install nano
 
 WORKDIR /app
 
