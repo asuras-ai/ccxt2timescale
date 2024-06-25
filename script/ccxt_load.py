@@ -17,9 +17,9 @@ DATABASE = {
 CONFIG_FILE = 'config.json'
 
 # Logging configuration
-LOG_FILE = 'script.log'
-logging.basicConfig(filename=LOG_FILE, level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    handlers=[logging.StreamHandler()])
 
 def connect_db():
     try:
