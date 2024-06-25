@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - postgres-network
+      - host
     volumes:
       - timescale-data:/var/lib/postgresql/data
   
@@ -23,11 +23,11 @@ services:
     depends_on:
       - timescaledb
     networks:
-      - postgres-network
+      - host
 
 networks:
-  postgres-network:
-    driver: bridge
+  host:
+    external: true
       
 volumes:
   timescale-data:
