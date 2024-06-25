@@ -10,9 +10,8 @@ import os
 database_url = os.getenv('DATABASE_URL')
 CONFIG_FILE = 'config.json'
 
-def connect_db():
-    conn = psycopg2.connect(database_url)
-    return conn
+conn = psycopg2.connect(database_url)
+   
 
 def create_table(conn, exchange, symbol, timeframe):
     #table_name = f'ohlcv_{symbol.replace("/", "_").lower()}_{timeframe}'
@@ -77,7 +76,6 @@ def main():
     with open(CONFIG_FILE) as f:
         config = json.load(f)
 
-    conn = connect_db()
     for conf in config:
         exchange = getattr(ccxt, conf['exchange'])()
         symbol = conf['symbol']
