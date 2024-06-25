@@ -64,7 +64,7 @@ def fetch_historical_data(exchange, symbol, timeframe, since):
         all_data.extend(data)
         #print('increment loaded ' + str(since))
         time.sleep(3)
-    print('load finished: ' + str(exchange) + ' ' + str(symbol) + ' ' + str(timeframe))
+    #print('load finished: ' + str(exchange) + ' ' + str(symbol) + ' ' + str(timeframe))
     return all_data
 
 def insert_ohlcv_data(conn, data, exchange, symbol, timeframe):
