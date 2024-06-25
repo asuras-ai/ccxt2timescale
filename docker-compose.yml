@@ -13,10 +13,13 @@ services:
   
   ccxtload:
     build: ./script
+    environment:
+      - DATABASE_HOST=timescaledb
+      - DATABASE_NAME=ccxt
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
     depends_on:
       - timescaledb
-    environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/ccxt
-  
+      
 volumes:
   timescale-data:
