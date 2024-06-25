@@ -8,20 +8,22 @@ services:
       POSTGRES_DB: ccxt
     ports:
       - "5432:5432"
-    network_mode: host
+    networks:
+      - bridge
     volumes:
       - timescale-data:/var/lib/postgresql/data
   
   ccxtload:
     build: ./script
     environment:
-      - DATABASE_HOST=localhost
+      - DATABASE_HOST=timescaledb
       - DATABASE_NAME=ccxt
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=password
     depends_on:
       - timescaledb
-    network_mode: host
+    networks:
+      - bridge
   
 volumes:
   timescale-data:
