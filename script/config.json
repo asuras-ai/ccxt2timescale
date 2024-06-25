@@ -6,12 +6,72 @@
     },
     {
         "exchange": "binance",
+        "symbol": "BTCUSDT",
+        "timeframe": "4h"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "BTCUSDT",
+        "timeframe": "15m"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "BTCUSDT",
+        "timeframe": "5m"
+    },
+    {
+        "exchange": "binance",
         "symbol": "ETHUSDT",
         "timeframe": "1d"
     },
     {
         "exchange": "binance",
+        "symbol": "ETHUSDT",
+        "timeframe": "4h"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "ETHUSDT",
+        "timeframe": "1h"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "ETHUSDT",
+        "timeframe": "15m"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "ETHUSDT",
+        "timeframe": "5m"
+    },
+    {
+        "exchange": "binance",
         "symbol": "SOLUSDT",
         "timeframe": "1d"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "SOLUSDT",
+        "timeframe": "4h"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "SOLUSDT",
+        "timeframe": "1h"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "SOLUSDT",
+        "timeframe": "15m"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "SOLUSDT",
+        "timeframe": "5m"
     }
 ]
