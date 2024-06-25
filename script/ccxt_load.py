@@ -62,7 +62,7 @@ def fetch_historical_data(exchange, symbol, timeframe, since):
             break
         since = data[-1][0] + 1
         all_data.extend(data)
-        print('increment loaded ' + str(since))
+        #print('increment loaded ' + str(since))
         time.sleep(3)
     print('load finished: ' + str(exchange) + ' ' + str(symbol) + ' ' + str(timeframe))
     return all_data
