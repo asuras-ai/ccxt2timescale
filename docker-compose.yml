@@ -8,8 +8,6 @@ services:
       POSTGRES_DB: ccxt
     ports:
       - "5432:5432"
-    network:
-      - mynetwork
     volumes:
       - timescale-data:/var/lib/postgresql/data
   
@@ -23,10 +21,10 @@ services:
     depends_on:
       - timescaledb
     network:
-      - mynetwork
+      - timescaledb
 
 networks:
-  mynetwork:
+  timescaledb:
     driver: bridge
       
 volumes:
