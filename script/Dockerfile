@@ -1,10 +1,10 @@
 FROM python:3.11-slim
 
 # Install the necessary system packages
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y \
+#    libpq-dev \
+#    gcc \
+#    && rm -rf /var/lib/apt/lists/*
 
 # Install nano editor
 RUN apt update -y && apt install nano
