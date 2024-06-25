@@ -1,0 +1,17 @@
+[
+    {
+        "exchange": "binance",
+        "symbol": "BTCUSDT",
+        "timeframe": "1d"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "ETHUSDT",
+        "timeframe": "1d"
+    },
+    {
+        "exchange": "binance",
+        "symbol": "SOLUSDT",
+        "timeframe": "1d"
+    }
+]
