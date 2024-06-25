@@ -63,7 +63,7 @@ docker run --rm --network host ohlcv-fetcher
 1. **Create a shell script cronjob.sh:**
     ```sh
     #!/bin/sh
-    docker exec -it $(docker ps -qf "ancestor=ohlcv-fetcher") python /usr/src/app/fetch_ohlcv.py
+    docker exec -it <timescaledb_container_name> python /app/script/ccxt_load.py
     ```
 2. Make the script executable:
     ```sh
@@ -80,60 +80,15 @@ docker run --rm --network host ohlcv-fetcher
 ### Step 6: Access the database for you analysis
 Here is an example Python script to access the TimescaleDB database and load OHLCV data for backtesting purposes:
 ```python
-import psycopg2
 import pandas as pd
+from sqlalchemy import create_engine
 
-# Database configuration
-DATABASE = {
-    'host': 'localhost',
-    'dbname': 'ohlcv',
-    'user': 'postgres',
-    'password': 'password'
-}
+engine = create_engine('postgresql+psycopg2://postgres:password@127.0.0.1/ccxt')
 
-def connect_db():
-    """Establish a connection to the TimescaleDB."""
-    conn = psycopg2.connect(**DATABASE)
-    return conn
-
-def fetch_ohlcv_data(conn, symbol, timeframe, start_date=None, end_date=None):
-    """Fetch OHLCV data from the database."""
-    table_name = f'ohlcv_{symbol.replace("/", "_").lower()}_{timeframe}'
-    query = f'SELECT * FROM {table_name} WHERE true'
-    
-    if start_date:
-        query += f" AND timestamp >= '{start_date}'"
-    if end_date:
-        query += f" AND timestamp <= '{end_date}'"
-    
-    query += ' ORDER BY timestamp ASC;'
-    
-    df = pd.read_sql(query, conn)
-    return df
-
-def main():
-    # Example parameters
-    symbol = 'BTC/USDT'
-    timeframe = '1d'
-    start_date = '2020-01-01'
-    end_date = '2023-01-01'
-    
-    # Connect to the database
-    conn = connect_db()
-    
-    # Fetch OHLCV data
-    df = fetch_ohlcv_data(conn, symbol, timeframe, start_date, end_date)
-    
-    # Close the database connection
-    conn.close()
-    
-    # Print the fetched data
-    print(df)
-
-if __name__ == '__main__':
-    main()
-
+df = pd.read_sql('SELECT * FROM binance_btcusdt_1h', engine)
+print(df.head(10))
 ```
+
 ## Files and Directories
 - `/script/ccxt_load.py`: Python script to load the data from CCXT and store it in the database
 
