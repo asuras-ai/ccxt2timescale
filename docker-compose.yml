@@ -5,11 +5,28 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: ccxt
+      POSTGRES_DB: ohlcv
     ports:
       - "5432:5432"
     volumes:
       - timescale-data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+      - ./backend/config.json:/app/config.json
+    depends_on:
+      - timescaledb
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./ohlcv-ui
+    volumes:
+      - ./ohlcv-ui:/app
+    ports:
+      - "3000:3000"
 
 volumes:
   timescale-data:
