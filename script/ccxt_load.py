@@ -5,20 +5,13 @@ import time
 from datetime import datetime, timezone
 import json
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
 # Configuration
-DATABASE = {
-    'host': 'pasword',
-    'dbname': 'postgres',
-    'user': 'postgres',
-    'password': os.getenv('password')
-}
+database_url = os.getenv('DATABASE_URL')
 CONFIG_FILE = 'config.json'
 
 def connect_db():
-    conn = psycopg2.connect(**DATABASE)
+    conn = psycopg2.connect(database_url)
     return conn
 
 def create_table(conn, exchange, symbol, timeframe):
