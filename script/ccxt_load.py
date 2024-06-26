@@ -32,9 +32,10 @@ def connect_db():
 
 def create_table(conn, exchange, symbol, timeframe):
     table_name = f'{exchange}_{symbol}_{timeframe}'
+    # change TIMESTAMP to TIMESTAMPTZ for adding timezone
     create_table_query = f'''
     CREATE TABLE IF NOT EXISTS {table_name} (
-        timestamp TIMESTAMPTZ PRIMARY KEY,
+        timestamp TIMESTAMP PRIMARY KEY,
         open DOUBLE PRECISION,
         high DOUBLE PRECISION,
         low DOUBLE PRECISION,
